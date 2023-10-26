@@ -1,5 +1,5 @@
 import './globals.sass'
-import Header from './pages/components/header/Header';
+import Header from './components/header/Header';
 
 export const metadata = {
   title: 'Create Next App',
