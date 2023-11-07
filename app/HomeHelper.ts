@@ -6,17 +6,18 @@ export const getRandomId = () => {
 
 export const MovieRandomArray: any = [];
 
-const showRandomMovie = async () => {
+export const showRandomMovie = async () => {
     const array = []
     const amountCards: number = 8;
     for (let i = 0; i < amountCards; i++) {
         let result = await KinopoiskApiRandom()
         await array.push(result)
+        if (i === amountCards) MovieRandomArray.push(array)
     }
-    MovieRandomArray.push(array)
-    console.log(array)
+    console.log(array.length)
+    return array
 };
-showRandomMovie()
+// showRandomMovie()
 
 
 

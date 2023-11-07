@@ -8,6 +8,7 @@ const MovieCard = ({movieApi}: {movieApi?: Object}) => {
         year?: string,
         rating?: string,
         poster?: {url: string}
+        message?: string
     } = movieApi || {}
     console.log(api)
     return (
@@ -16,11 +17,11 @@ const MovieCard = ({movieApi}: {movieApi?: Object}) => {
                 <img className={Styles.poster} src={`${api.poster?.url}`} />
             </div>
             <div className={Styles.name}>
-                <Title tag={'span'} movieName={api.name} />
+                <Title tag={'span'} movieName={api.name || api.message} />
                 <span className={Styles.year}> { api.year } </span>
             </div>
             <div>
-
+                
             </div>
         </div>
     )
