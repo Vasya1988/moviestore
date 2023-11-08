@@ -10,7 +10,7 @@ import MovieCard from "./components/movieCard/MovieCard";
 export default function Home({ children }: { children: ReactNode }) {
   const [movieApi, setmovieApi] = useState(Object);
   const [year, setYear] = useState('...');
-  const [randomMovie, setRandomMovie] = useState([]);
+  const [randomMovie, setRandomMovie] = useState(Array);
   const amountCards: number = 8;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Home({ children }: { children: ReactNode }) {
 
     }
     responseApi()
-    let ag = async () => {
+    let getRamdpmMovie = async () => {
       const arr = []
       for (let i = await 0; i < await amountCards; await i++) {
         const app = await KinopoiskApiRandom()
@@ -32,7 +32,7 @@ export default function Home({ children }: { children: ReactNode }) {
       await setRandomMovie(arr)
       console.log(randomMovie)
     }
-    ag()
+    getRamdpmMovie()
 
   }, []);
 

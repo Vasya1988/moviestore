@@ -1,8 +1,11 @@
 import Styles from './Movie.module.sass';
+import Title from '../components/title/Title';
 
-const Movie = () => {
+const Movie = ({children}: {children: React.ReactNode}) => {
     return (
-        <div>Hello from movie page</div>
+        <main className='container'>
+            { children }
+        </main>
     )
 }
 
