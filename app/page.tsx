@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import Styles from './Home.module.sass';
 import Play from "./components/buttons/play/Play";
-import { KinopoiskApiRandom, KinopoiskApiSearchId } from "./api/Kinopoisk";
+import { KinopoiskApiRandom } from "./api/Kinopoisk";
 import Title from "./components/title/Title";
 import { MovieRandomArray, showRandomMovie } from './HomeHelper'
 import MovieCard from "./components/movieCard/MovieCard";

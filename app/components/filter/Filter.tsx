@@ -1,17 +1,11 @@
 import Styles from './Filter.module.sass';
+import { FilterList } from './FilterHelper';
 
 const Filter = () => {
     return (
         <nav className={Styles.Filter}>
             <ul>
-                <li><a>Comedy</a></li>
-                <li><a>Thriller</a></li>
-                <li><a>Horror</a></li>
-                <li><a>Drama</a></li>
-                <li><a>Action</a></li>
-                <li><a>Animated film</a></li>
-                <li><a>Romantic</a></li>
-                <li><a>Other</a></li>
+                { FilterList.map((name) => <li><a>{name}</a></li>)}
             </ul>
         </nav>
     )
