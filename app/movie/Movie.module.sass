@@ -3,16 +3,21 @@
     margin: 0 auto
     margin-top: 200px
     display: grid
-    grid-template-columns: 1fr
+    grid-template-columns: repeat(2, 1fr)
     justify-content: center
     color: #fff
     .Title
         grid-column: 1
         margin: 0 auto
         margin-bottom: 20px
+        grid-column-start: 1
+        grid-column-end: 4
+        display: grid
     .Nav
         grid-row: 2
         grid-column: 1
     .Children
         grid-row: 2
         grid-column: 2
+        .Genre
+            display: grid

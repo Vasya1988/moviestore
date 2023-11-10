@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import Styles from './Home.module.sass';
 import Play from "./components/buttons/play/Play";
-import { KinopoiskApiRandom } from "./api/Kinopoisk";
+import { KinopoiskApiRandom, KinopoiskApiGenre } from "./api/Kinopoisk";
 import Title from "./components/title/Title";
 import { MovieRandomArray, showRandomMovie } from './HomeHelper'
 import MovieCard from "./components/movieCard/MovieCard";
@@ -10,34 +10,21 @@ import MovieCard from "./components/movieCard/MovieCard";
 export default function Home({ children }: { children: ReactNode }) {
   const [movieApi, setmovieApi] = useState(Object);
   const [year, setYear] = useState('...');
-  const [randomMovie, setRandomMovie] = useState(Array);
-  const amountCards: number = 8;
+  const [genres, setGenres] = useState([])
 
   useEffect(() => {
     async function responseApi() {
       const result = await KinopoiskApiRandom()
       const movieYear: { year?: string } = result
+      const genres = await KinopoiskApiGenre();
+      const getGenres = genres.docs;
+      setGenres(getGenres)
       await setmovieApi(result)
       await setYear(`${movieYear?.year}`)
 
     }
     responseApi()
-    let getRamdpmMovie = async () => {
-      const arr = []
-      for (let i = await 0; i < await amountCards; await i++) {
-        const app = await KinopoiskApiRandom()
-        // await console.log(app && app)
-        await arr.push(app)
-      }
-      await setRandomMovie(arr)
-      console.log(randomMovie)
-    }
-    getRamdpmMovie()
-
   }, []);
-
-
-
 
   // console.log('result ', movieApi)
 
@@ -72,10 +59,9 @@ export default function Home({ children }: { children: ReactNode }) {
 
       <div className={Styles.randomMovie}>
             {
-              randomMovie && randomMovie.map((movie, index) => {
+              genres && genres.map((movie, index) => {
                 return <MovieCard key={index} movieApi={movie} />
               })
-              
             }
       </div>
     </main>

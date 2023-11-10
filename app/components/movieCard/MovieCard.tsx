@@ -10,7 +10,7 @@ const MovieCard = ({movieApi}: {movieApi?: Object}) => {
         poster?: {url: string}
         message?: string
     } = movieApi || {}
-    console.log(api)
+    // console.log(api)
     return (
         <div className={Styles.MovieCardFrame}>
             <div>
