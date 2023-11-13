@@ -1,6 +1,7 @@
 import './globals.sass'
 import Header from './components/header/Header';
-import { Open_Sans } from 'next/font/google'
+import { Open_Sans } from 'next/font/google';
+import { GlobalContextProvider } from './Context/Context'
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={open_sans.className}>
         <Header />
-        {children}
+        <GlobalContextProvider>
+          {children}
+        </GlobalContextProvider>
+        
       </body>
     </html>
   )

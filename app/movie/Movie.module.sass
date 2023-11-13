@@ -3,11 +3,10 @@
     margin: 0 auto
     margin-top: 200px
     display: grid
-    grid-template-columns: repeat(2, 1fr)
-    justify-content: center
+    grid-template-columns: 1fr 4fr
+    grid-gap: 0 12px
     color: #fff
     .Title
-        grid-column: 1
         margin: 0 auto
         margin-bottom: 20px
         grid-column-start: 1
@@ -21,3 +20,5 @@
         grid-column: 2
         .Genre
             display: grid
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+            grid-gap: 0 36px
