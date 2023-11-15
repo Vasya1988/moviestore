@@ -4,7 +4,6 @@ import Styles from './Home.module.sass';
 import Play from "./components/buttons/play/Play";
 import { KinopoiskApiRandom, KinopoiskApiGenre } from "./api/Kinopoisk";
 import Title from "./components/title/Title";
-import { MovieRandomArray, showRandomMovie } from './HomeHelper'
 import MovieCard from "./components/movieCard/MovieCard";
 
 export default function Home({ children }: { children: ReactNode }) {
@@ -26,13 +25,13 @@ export default function Home({ children }: { children: ReactNode }) {
     responseApi()
   }, []);
 
-  // console.log('result ', movieApi)
+  console.log('result ', movieApi)
 
   return (
     <main className={'container-home'}>
       <div
         className={Styles.Home}
-        style={{ backgroundImage: `url(${movieApi.backdrop?.url})` }}
+        style={{ backgroundImage: `url(${movieApi && movieApi.backdrop?.url})` }}
       >
         <div className={'opacity'}>
           <div className={Styles.info}>

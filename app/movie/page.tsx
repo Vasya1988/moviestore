@@ -5,7 +5,7 @@ import MovieCard from '../components/movieCard/MovieCard';
 import { KinopoiskApiGenre } from '../api/Kinopoisk';
 import { useGlobalContext } from '../Context/Context';
 
-const Movie = ({children}: {children: React.ReactNode}) => {
+const Movie = () => {
     const {genreName} = useGlobalContext()
 
     const [apiGenre, setApiGenre] = useState([])

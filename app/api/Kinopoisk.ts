@@ -20,16 +20,17 @@ export const KinopoiskApiRandom = async () => {
 
 // Request to receive movies by genre
 // Запрос на получение фильмов по жанрам
-export const KinopoiskApiGenre = async (genre?: string, year?: string) => {
+export const KinopoiskApiGenre = async (genre?: string, year?: string, tvshows?: string) => {
 
     const getGenre = genre && `genres.name=${genre}`;
     const getYears = year && `year=${year}`;
+    const getTvshow = tvshows && `type=${tvshows}` // tv-series
 
-    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&${getGenre}&${getYears}`, headers);
+    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&${getTvshow}&${getGenre}&${getYears}`, headers);
 
     let response = await getFetch.json();
     
-    await console.log('resp --> ', response)
+    // await console.log('resp --> ', response)
     return response
 
 }

@@ -13,7 +13,7 @@ const MovieLayout = (
 ) => {
 
     const {genreName} = useGlobalContext();
-    const resultName: any = genreName && changeName(genreName)
+    const resultName = changeName(genreName)
 
     return(
         <main className='container'>
@@ -21,10 +21,10 @@ const MovieLayout = (
                 className={Styles.Movie}
             >
                 <div className={Styles.Title}>
-                    <Title movieName={resultName ||'Выберите жанр'} />
+                    <Title movieName={resultName ||'Choose a genre'} />
                 </div>
                 <div className={Styles.Nav}>
-                    <Filter test={()=>{}} />
+                    <Filter test={()=>{}} active={resultName}/>
                 </div>
                 <div className={Styles.Children}>
                     { children } 

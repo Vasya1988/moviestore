@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { FilterList } from "../components/filter/FilterHelper";
 
 export const changeName = (name: string) => {
-    const result =  FilterList.map((filter) => filter.genre === name ? filter.name : false);
-
+    let result: string = '';
+    const getResult = FilterList.filter(filter => filter.genre === name ? result = filter.name : name
+    );
     return result
 }
 
