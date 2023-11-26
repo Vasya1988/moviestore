@@ -3,6 +3,7 @@ import '../../globals.sass';
 import Logo from '../logo/Logo';
 import Navigation from './navigation/Navigation';
 import SignIn from '../buttons/signIn/SignIn';
+import Search from '../search/Search';
 
 const Header = () => {
     return (
@@ -12,6 +13,7 @@ const Header = () => {
             >
                 <Logo />
                 <Navigation />
+                <Search />
                 <SignIn />
             </div>
         </div>
