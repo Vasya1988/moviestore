@@ -1,11 +1,20 @@
 .Search
-    display: flex
+    width: 100%
+    display: grid
+    grid-template-columns: 2fr 1fr
+    grid-gap: 14px
     input
+        width: 100%
         background-color: rgba(255, 255, 255, 0.04)
         padding: 6px 8px
         box-sizing: border-box
         border-radius: 8px
         border: none
+        color: #e6e6e6
+        &:focus-visible
+            // border-bottom: 2px solid var(--lightblue)
+            outline: none
+            color: #e6e6e6
     button
         max-width: 30px
         width: 100%
