@@ -1,15 +1,31 @@
 'use client'
 import Styles from './Search.module.sass';
 import ChangeHandler from './SearchHelper';
-import { useGlobalContext } from '../../Context/Context'
+import { useGlobalContext } from '../../Context/Context';
+import { KinopoiskApiSearchName } from '@/app/api/Kinopoisk';
+import { useEffect, useState } from 'react';
 
 const Search = (name: string) => {
 
-    const {searchName} = useGlobalContext()
+    const {searchName, setSearchName} = useGlobalContext()
+    const [movieName, setMovieName] = useState('start')
+
+    useEffect(() => {
+        (async () => {
+            const apiQuery = await KinopoiskApiSearchName(movieName)
+            const response = await apiQuery
+            console.log('resp ---' , response)
+        })()
+    }, [movieName])
     console.log(searchName)
     return (
         <div className={Styles.Search}>
-            <form onSubmit={(item) => {item.preventDefault(), console.log(item.target[0].value)}} >
+            <form onSubmit={(item) => {
+                item.preventDefault(); 
+                setMovieName(item.target[0].value);
+                console.log(item.target[0].value)
+                }} 
+            >
                 <input type="text" placeholder={'Search...'}/>
             </form>
             

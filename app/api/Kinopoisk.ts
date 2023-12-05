@@ -26,7 +26,7 @@ export const KinopoiskApiGenre = async (genre?: string, year?: string, tvshows?:
     const getYears = year && `year=${year}`;
     const getTvshow = tvshows && `type=${tvshows}` // tv-series
 
-    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.3/movie?page=1&limit=12&${getTvshow}&${getGenre}&${getYears}`, headers);
+    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie?page=1&limit=12&${getTvshow}&${getGenre}&${getYears}`, headers);
 
     let response = await getFetch.json();
     
@@ -35,6 +35,16 @@ export const KinopoiskApiGenre = async (genre?: string, year?: string, tvshows?:
 
 }
 
+export const KinopoiskApiSearchName = async (searchName?: string) => {
+
+    const name = searchName && `query=${searchName}`;
+
+    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=30&${name}`, headers);
+
+    let response = await getFetch.json();
+    await console.log('resp --> ', response)
+    return response;
+}
 KinopoiskApiGenre()
 
 
