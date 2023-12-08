@@ -3,7 +3,7 @@ import '../../globals.sass';
 import Logo from '../logo/Logo';
 import Navigation from './navigation/Navigation';
 import SignIn from '../buttons/signIn/SignIn';
-import Search from '../search/Search';
+import Search from '../buttons/search/Search';
 
 const Header = () => {
     return (
@@ -13,8 +13,11 @@ const Header = () => {
             >
                 <Logo />
                 <Navigation />
-                <Search />
-                <SignIn />
+                <div className={Styles.Group}>
+                    <Search />
+                    <SignIn />
+                </div>
+                
             </div>
         </div>
     )
