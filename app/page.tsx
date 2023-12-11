@@ -39,10 +39,6 @@ export default function Home({ children }: { children: ReactNode }) {
             <span className={Styles.description}>Movies, TV Shows and more.</span>
             <Title
               movieName={movieApi.name}
-              genre={
-                movieApi.genres?.map(
-                  (item: { name: string }) => item.name).join(', ')
-              }
             />
             <span className={Styles.genres}> {
               movieApi.genres?.map(

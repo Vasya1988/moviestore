@@ -4,23 +4,26 @@ import { useGlobalContext } from '../Context/Context';
 import { useState, useEffect } from 'react';
 import { KinopoiskApiSearchName } from '../api/Kinopoisk';
 import Link from 'next/link';
+import SearchTitleResult from '../components/searchTitleResult/SearchTitleResult';
 
 const Search = () => {
     const {searchName} = useGlobalContext()
     console.log('Search name ---->  ', searchName)
 
-    const [movieName, setMovieName] = useState('start')
+    const [movieName, setMovieName] = useState(false)
+    const [result, setResult] = useState([])
 
     useEffect(() => {
         (async () => {
-            const apiQuery = await KinopoiskApiSearchName(movieName)
+            const apiQuery = await movieName && KinopoiskApiSearchName(movieName)
             const response = await apiQuery
+            setResult(response.docs)
             console.log('resp ---' , response)
         })();
         
     }, [movieName])
     
-    console.log(searchName)
+    console.log(result)
     return (
         <div className={`container ${Styles.Search}`}>
             <form onSubmit={(item) => {
@@ -39,10 +42,16 @@ const Search = () => {
                 </svg>
             </Link>
             <ul className={Styles.ListResult}>
-                <li><a>fgvfdv</a></li>
-                <li><a>vfd</a></li>
-                <li><a>hyt</a></li>
-                <li><a>nhuyjmtjy hfg </a></li>
+                {
+                    result && result.map((item: {name?: string, year?: string, countries: []}, index: number) => {
+                        return <SearchTitleResult 
+                            key={index}
+                            name={item.name}
+                            year={item.year}
+                            countries={item.countries.map((genre: {name: string}) => genre?.name).join(', ')}
+                        />
+                    })
+                }
             </ul>
             
         </div>

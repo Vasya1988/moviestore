@@ -39,10 +39,10 @@ export const KinopoiskApiSearchName = async (searchName?: string) => {
 
     const name = searchName && `query=${searchName}`;
 
-    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=30&${name}`, headers);
+    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=20&${name}`, headers);
 
     let response = await getFetch.json();
-    await console.log('resp --> ', response)
+    // await console.log('resp --> ', response)
     return response;
 }
 KinopoiskApiGenre()

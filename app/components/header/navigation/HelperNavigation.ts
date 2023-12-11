@@ -17,7 +17,7 @@ export const CurrentPath: PropsCurrentPath = () => {
             ? activeLink[activeLink.length - 1] = 'home' 
             : activeLink[activeLink.length - 1]
 
-        console.log(link.label.toLocaleLowerCase(), activeLink[activeLink.length - 1])
+        // console.log(link.label.toLocaleLowerCase(), activeLink[activeLink.length - 1])
         
         const isActive = link.label.toLocaleLowerCase().replaceAll(' ', '') === activeLink[activeLink.length - 1];
         
