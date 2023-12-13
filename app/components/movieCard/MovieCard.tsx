@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import Styles from './MovieCard.module.sass';
 import Title from '../title/Title';
+import OpenCard from '../openCard/OpenCard';
 
 const MovieCard = ({movieApi}: {movieApi?: Object}) => {
     const api: {
@@ -17,7 +18,7 @@ const MovieCard = ({movieApi}: {movieApi?: Object}) => {
                 <img className={Styles.poster} src={`${api.poster?.url}`} />
             </div>
             <div className={Styles.name}>
-                <Title tag={'span'} movieName={api.name || api.message} />
+                <span className={Styles.TitleName}> {api.name || api.message} </span>
                 <span className={Styles.year}> { api.year } </span>
             </div>
             <div>

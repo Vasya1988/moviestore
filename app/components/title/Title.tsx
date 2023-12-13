@@ -1,6 +1,6 @@
 import Styles from './Title.module.sass';
 
-interface PropsTitle {tag?: '', movieName?: String, genre?: String, year?: string}
+interface PropsTitle {tag?: String, movieName?: String, genre?: String, year?: string, src?: string}
 
 const Title = ({tag, movieName, genre, year}:PropsTitle) => {
 

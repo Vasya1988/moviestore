@@ -9,7 +9,8 @@ interface result {
 const SearchTitleResult = ( {name, year, keys, countries}: result) => {
     return (
         <li className={Styles.Result} key={keys}>
-            <a href='#'>{`${name}, ${year}, ${countries}`}</a>
+            <a href='#'>{`${name}`}</a>
+            <span>{`${year}, ${countries}`}</span>
         </li>
     )
 }
