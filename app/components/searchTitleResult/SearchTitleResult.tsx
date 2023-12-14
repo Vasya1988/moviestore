@@ -4,12 +4,13 @@ interface result {
     name?: string,
     year?: string,
     keys?: number,
-    countries?: Object
+    countries?: Object,
+    eventClick?: Function
 }
-const SearchTitleResult = ( {name, year, keys, countries}: result) => {
+const SearchTitleResult = ( {name, year, keys, countries, eventClick}: result) => {
     return (
         <li className={Styles.Result} key={keys}>
-            <a href='#'>{`${name}`}</a>
+            <a href='#' onClick={eventClick}>{`${name}`}</a>
             <span>{`${year}, ${countries}`}</span>
         </li>
     )

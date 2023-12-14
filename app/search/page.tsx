@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { KinopoiskApiSearchName } from '../api/Kinopoisk';
 import Link from 'next/link';
 import SearchTitleResult from '../components/searchTitleResult/SearchTitleResult';
+import { EventClickHandler } from './SearchPageHelper';
+import OpenCard from '../components/openCard/OpenCard';
 
 const Search = () => {
     const {searchName} = useGlobalContext()
@@ -12,6 +14,7 @@ const Search = () => {
 
     const [movieName, setMovieName] = useState(false)
     const [result, setResult] = useState([])
+    const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
 
     useEffect(() => {
         (async () => {
@@ -49,10 +52,21 @@ const Search = () => {
                             name={item.name}
                             year={item.year}
                             countries={item.countries.map((genre: {name: string}) => genre?.name).join(', ')}
+                            eventClick={() => setMovieFlag({flag: true, item: index})}
                         />
                     })
                 }
             </ul>
+            {
+                movieFlag.flag ? <OpenCard 
+                    name={result[movieFlag.item].name}
+                    imageLInk={result[movieFlag.item].poster.url} 
+                    description={result[movieFlag.item].description} 
+                    year={result[movieFlag.item].year} 
+                    countries={result[movieFlag.item].countries.map(item => item.name)}
+                    /> 
+                : false
+            }
             
         </div>
     )
