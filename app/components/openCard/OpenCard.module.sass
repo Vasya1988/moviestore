@@ -2,6 +2,9 @@
     width: 100%
     height: 100%
     position: fixed
+    display: flex
+    justify-content: center
+    align-items: center
     background-color: #272727a8
     top: 0
     left: 0
@@ -14,4 +17,15 @@
             width: 100%
             max-width: 300px
         .Info
-            display: grid
+            display: flex
+            flex-wrap: nowrap
+            flex-direction: column
+            justify-content: center
+            padding: 20px
+            box-sizing: border-box
+            h2
+                font-size: xx-large
+                color: var(--ButtonColor)
+            .Description
+                margin-top: 20px
+                

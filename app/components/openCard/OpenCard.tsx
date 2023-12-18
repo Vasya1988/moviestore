@@ -11,13 +11,12 @@ interface movieProps {
 const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) => {
     return (
         <div className={Styles.OpenCard} >
-            Hello from OPEN CARD
             <div className={Styles.MovieInfo}>
                 <img src={imageLInk}/>
                 <div className={Styles.Info}>
                     <Title movieName={name}/>
                     <span>{`${year}, ${countries}`}</span>
-                    <span>{description}</span>
+                    <span className={Styles.Description} >{description}</span>
                 </div>
 
             </div>
