@@ -1,5 +1,7 @@
 import Title from '../title/Title';
 import Styles from './OpenCard.module.sass'
+import CloseButton from '../buttons/close/Close';
+import { DeleteCard } from './OpenCardHelper';
 
 interface movieProps {
     name?: string,
@@ -18,7 +20,7 @@ const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) =>
                     <span>{`${year}, ${countries}`}</span>
                     <span className={Styles.Description} >{description}</span>
                 </div>
-
+                <CloseButton func={(event:any) => DeleteCard(event)} color={'var(--ButtonColor)'} />
             </div>
         </div>
     )
