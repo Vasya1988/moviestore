@@ -7,18 +7,22 @@ const GlobalContext = createContext(
         genreName: '',
         setGenreName: useState,
         searchName: '',
-        setSearchName: useState
+        setSearchName: useState,
+        isCardOpen: false,
+        setIsCardOpen: useState
     }
 )
 
 export const GlobalContextProvider = ({ children }) => {
     const [genreName, setGenreName] = useState();
-    const [searchName, setSearchName] = useState('')
+    const [searchName, setSearchName] = useState('');
+    const [isCardOpen, setIsCardOpen] = useState();
     return (
         <GlobalContext.Provider 
             value={{
                 genreName, setGenreName,
-                searchName, setSearchName
+                searchName, setSearchName,
+                isCardOpen, setIsCardOpen
             }}
         >
             { children }

@@ -16,6 +16,7 @@ const Search = () => {
     const [movieName, setMovieName] = useState(false)
     const [result, setResult] = useState([])
     const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
+    const {isCardOpen, setIsCardOpen} = useGlobalContext();
 
     useEffect(() => {
         (async () => {
@@ -52,7 +53,12 @@ const Search = () => {
                             name={item.name}
                             year={item.year}
                             countries={item.countries.map((genre: {name: string}) => genre?.name).join(', ')}
-                            eventClick={() => setMovieFlag({flag: true, item: index})}
+                            eventClick={
+                                () => {
+                                    setIsCardOpen(true);
+                                    setMovieFlag({flag: true, item: index});
+                                }
+                            }
                         />
                     })
                 }

@@ -1,7 +1,8 @@
 import Title from '../title/Title';
 import Styles from './OpenCard.module.sass'
 import CloseButton from '../buttons/close/Close';
-import { DeleteCard } from './OpenCardHelper';
+import { useGlobalContext } from '@/app/Context/Context';
+import { useEffect } from 'react';
 
 interface movieProps {
     name?: string,
@@ -11,8 +12,11 @@ interface movieProps {
     countries: []
 }
 const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) => {
+    const {isCardOpen, setIsCardOpen} = useGlobalContext();
+
+    console.log('open --> ', isCardOpen)
     return (
-        <div className={Styles.OpenCard} >
+        isCardOpen ? <div className={Styles.OpenCard} >
             <div className={Styles.MovieInfo}>
                 <img src={imageLInk}/>
                 <div className={Styles.Info}>
@@ -20,9 +24,17 @@ const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) =>
                     <span>{`${year}, ${countries}`}</span>
                     <span className={Styles.Description} >{description}</span>
                 </div>
-                <CloseButton func={(event:any) => DeleteCard(event)} color={'var(--ButtonColor)'} />
+                <CloseButton 
+                    func={
+                        () => {
+                            isCardOpen ? setIsCardOpen(false) : isCardOpen
+                        }
+                    } 
+                    color={'var(--ButtonColor)'}
+                    styles={{cursor: 'pointer'}}
+                />
             </div>
-        </div>
+        </div> : ''
     )
 }
 
