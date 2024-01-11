@@ -2,10 +2,9 @@ import Title from '../title/Title';
 import Styles from './OpenCard.module.sass'
 import CloseButton from '../buttons/close/Close';
 import { useGlobalContext } from '@/app/Context/Context';
-import { useEffect } from 'react';
 
 interface movieProps {
-    name?: string,
+    name: string,
     imageLInk: string,
     description: string,
     year: string,

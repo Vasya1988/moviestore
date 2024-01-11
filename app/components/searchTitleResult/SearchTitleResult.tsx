@@ -5,7 +5,7 @@ interface result {
     year?: string,
     keys?: number,
     countries?: Object,
-    eventClick?: Function
+    eventClick?: ()=>{}
 }
 const SearchTitleResult = ( {name, year, keys, countries, eventClick}: result) => {
     return (

@@ -1,9 +1,12 @@
 import React, { ReactNode } from 'react';
 import Styles from './MovieCard.module.sass';
-import Title from '../title/Title';
-import OpenCard from '../openCard/OpenCard';
 
-const MovieCard = ({movieApi}: {movieApi?: Object}) => {
+interface EventProps {
+    movieApi: Object,
+    eventClick: React.MouseEventHandler<HTMLDivElement>
+}
+
+const MovieCard = ({movieApi, eventClick}: EventProps) => {
     const api: {
         name?: string,
         year?: string,
@@ -13,7 +16,7 @@ const MovieCard = ({movieApi}: {movieApi?: Object}) => {
     } = movieApi || {}
     // console.log(api)
     return (
-        <div className={Styles.MovieCardFrame}>
+        <div onClick={eventClick} className={Styles.MovieCardFrame}>
             <div>
                 <img className={Styles.poster} src={`${api.poster?.url}`} />
             </div>

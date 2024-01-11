@@ -5,11 +5,15 @@ import Play from "./components/buttons/play/Play";
 import { KinopoiskApiRandom, KinopoiskApiGenre } from "./api/Kinopoisk";
 import Title from "./components/title/Title";
 import MovieCard from "./components/movieCard/MovieCard";
+import { useGlobalContext } from "./Context/Context";
+import OpenCard from "./components/openCard/OpenCard";
 
 export default function Home({ children }: { children: ReactNode }) {
   const [movieApi, setmovieApi] = useState(Object);
   const [year, setYear] = useState('...');
   const [genres, setGenres] = useState([])
+  const {isCardOpen, setIsCardOpen} = useGlobalContext();
+  const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
 
   useEffect(() => {
     async function responseApi() {
@@ -55,10 +59,23 @@ export default function Home({ children }: { children: ReactNode }) {
       <div className={Styles.randomMovie}>
             {
               genres && genres.map((movie, index) => {
-                return <MovieCard key={index} movieApi={movie} />
+                return <MovieCard eventClick={() => {
+                  setIsCardOpen(true);
+                  setMovieFlag({flag: true, item: index});
+                }} key={index} movieApi={movie} />
               })
             }
       </div>
+      {
+        movieFlag.flag ? <OpenCard 
+        name={genres[movieFlag.item].name}
+        imageLInk={genres[movieFlag.item].poster.url} 
+        description={genres[movieFlag.item].description} 
+        year={genres[movieFlag.item].year} 
+        countries={genres[movieFlag.item].countries.map(item => item.name)}
+        /> 
+    : false
+      }
     </main>
   );
 }

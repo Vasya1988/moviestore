@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { KinopoiskApiSearchName } from '../api/Kinopoisk';
 import Link from 'next/link';
 import SearchTitleResult from '../components/searchTitleResult/SearchTitleResult';
-import { EventClickHandler } from './SearchPageHelper';
 import OpenCard from '../components/openCard/OpenCard';
 import CloseButton from '../components/buttons/close/Close';
 
