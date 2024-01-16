@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import Styles from './SearchTitleResult.module.sass';
 
 interface result {
@@ -5,7 +6,7 @@ interface result {
     year?: string,
     keys?: number,
     countries?: Object,
-    eventClick?: ()=>{}
+    eventClick?: MouseEventHandler<HTMLAnchorElement>
 }
 const SearchTitleResult = ( {name, year, keys, countries, eventClick}: result) => {
     return (

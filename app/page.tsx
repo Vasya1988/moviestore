@@ -11,7 +11,14 @@ import OpenCard from "./components/openCard/OpenCard";
 export default function Home({ children }: { children: ReactNode }) {
   const [movieApi, setmovieApi] = useState(Object);
   const [year, setYear] = useState('...');
-  const [genres, setGenres] = useState([])
+  interface GenreProps {
+    name: string, 
+    poster: {url: string},
+    description: string,
+    year: string,
+    countries: [item: {name: string}]
+  }
+  const [genres, setGenres] = useState<GenreProps[]>([])
   const {isCardOpen, setIsCardOpen} = useGlobalContext();
   const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
 
@@ -30,6 +37,7 @@ export default function Home({ children }: { children: ReactNode }) {
   }, []);
 
   console.log('result ', movieApi)
+  console.log('Genres -->  ', movieFlag.item && genres[movieFlag.item].name)
 
   return (
     <main className={'container-home'}>

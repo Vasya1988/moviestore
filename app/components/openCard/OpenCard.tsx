@@ -8,7 +8,7 @@ interface movieProps {
     imageLInk: string,
     description: string,
     year: string,
-    countries: []
+    countries: string[]
 }
 const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) => {
     const {isCardOpen, setIsCardOpen} = useGlobalContext();

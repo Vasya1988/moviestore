@@ -1,19 +1,26 @@
 'use client'
 import Styles from './Search.module.sass';
 import { useGlobalContext } from '../Context/Context';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { KinopoiskApiSearchName } from '../api/Kinopoisk';
 import Link from 'next/link';
 import SearchTitleResult from '../components/searchTitleResult/SearchTitleResult';
 import OpenCard from '../components/openCard/OpenCard';
 import CloseButton from '../components/buttons/close/Close';
 
-const Search = () => {
+const Search: React.FC = () => {
     const {searchName} = useGlobalContext()
     console.log('Search name ---->  ', searchName)
 
-    const [movieName, setMovieName] = useState(false)
-    const [result, setResult] = useState([])
+    const [movieName, setMovieName] = useState<string>('')
+    interface ResultProps {
+        name: string, 
+        poster: {url: string},
+        description: string,
+        year: string,
+        countries: [item: {name: string}]
+    }
+    const [result, setResult] = useState<ResultProps[]>([])
     const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
     const {isCardOpen, setIsCardOpen} = useGlobalContext();
 
@@ -26,16 +33,16 @@ const Search = () => {
         })();
         
     }, [movieName])
-    
+
     console.log(result)
     return (
         <div className={`container ${Styles.Search}`}>
-            <form onSubmit={(item) => {
-                item.preventDefault(); 
-                setMovieName(item.target[0].value);
-                console.log(item.target[0].value)
-
-                }}
+            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+                event.preventDefault();
+                setMovieName((event.target as HTMLFormElement).querySelector('input')?.value || '');
+                console.log((event.target as HTMLFormElement).querySelector('input')?.value || '')
+                }
+            }
                 
             >
                 <input type="text" placeholder={'Search...'}/>
@@ -46,7 +53,7 @@ const Search = () => {
             </Link>
             <ul className={Styles.ListResult}>
                 {
-                    result && result.map((item: {name?: string, year?: string, countries: []}, index: number) => {
+                    result && result.map((item, index) => {
                         return <SearchTitleResult 
                             key={index}
                             name={item.name}
