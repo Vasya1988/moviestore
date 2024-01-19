@@ -10,7 +10,15 @@ const Movie = () => {
     const {genreName} = useGlobalContext()
     const {isCardOpen, setIsCardOpen} = useGlobalContext();
     const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
-    const [apiGenre, setApiGenre] = useState([])
+
+    interface ApiProps {
+        name: string, 
+        poster: {url: string},
+        description: string,
+        year: string,
+        countries: [item: {name: string}]
+      }
+    const [apiGenre, setApiGenre] = useState<ApiProps[]>([])
 
     useEffect(() => {
         (async () => {
