@@ -8,7 +8,8 @@ import MovieCard from "./components/movieCard/MovieCard";
 import { useGlobalContext } from "./Context/Context";
 import OpenCard from "./components/openCard/OpenCard";
 
-export default function Home({ children }: { children: ReactNode }) {
+
+export default function Home() {
   const [movieApi, setmovieApi] = useState(Object);
   const [year, setYear] = useState('...');
   interface GenreProps {
@@ -62,7 +63,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </div>
         </div>
       </div>
-      {children}
+   
 
       <div className={Styles.randomMovie}>
             {
