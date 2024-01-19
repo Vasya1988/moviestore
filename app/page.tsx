@@ -38,7 +38,7 @@ export default function Home({ children }: { children: ReactNode }) {
 
   console.log('result ', movieApi)
   console.log('Genres -->  ', movieFlag.item && genres[movieFlag.item].name)
-
+  console.log('fff')
   return (
     <main className={'container-home'}>
       <div
