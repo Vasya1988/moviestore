@@ -23,17 +23,19 @@ export default function Home() {
   const {isCardOpen, setIsCardOpen} = useGlobalContext();
   const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
 
-  useEffect(() => {
-    async function responseApi() {
-      const result = await KinopoiskApiRandom()
-      const movieYear: { year?: string } = result
-      const genres = await KinopoiskApiGenre();
-      const getGenres = genres.docs;
-      setGenres(getGenres)
-      await setmovieApi(result)
-      await setYear(`${movieYear?.year}`)
+  async function responseApi() {
+    const result = await KinopoiskApiRandom()
+    const movieYear: { year?: string } = result
+    const genres = await KinopoiskApiGenre();
+    const getGenres = genres.docs;
+    setGenres(getGenres)
+    await setmovieApi(result)
+    await setYear(`${movieYear?.year}`)
 
-    }
+  }
+  
+  useEffect(() => {
+    
     responseApi()
   }, []);
 

@@ -11,9 +11,20 @@
     top: 20px
     position: fixed
     // background-color: var(--HeaderColorTest)
+    @media screen and (max-width: 768px)
+        grid-template-columns: 1fr 1fr
+        grid-row-gap: 40px
+    
+
 .Group
     width: 100%
     display: grid
     grid-template-columns: 1fr 1fr
     justify-content: flex-end
     justify-items: end
+    @media screen and (max-width: 376px)
+        width: 100%
+        grid-row: 2
+    
+
+
