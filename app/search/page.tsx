@@ -63,6 +63,7 @@ const Search: React.FC = () => {
                                 () => {
                                     setIsCardOpen(true);
                                     setMovieFlag({flag: true, item: index});
+                                    document.body.style.overflow='hidden';
                                 }
                             }
                         />

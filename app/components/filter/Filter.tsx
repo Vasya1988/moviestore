@@ -10,6 +10,7 @@ const Filter = (props: any) => {
     
     return (
         <nav className={Styles.Filter}>
+            <h2 className={Styles.GenreMobile}> Choose genre</h2>
             <ul>
                 { FilterList.map((name, index) => 
                     <li 

@@ -26,7 +26,8 @@ const OpenCard = ({name, imageLInk, description, year, countries}:movieProps) =>
                 <CloseButton 
                     func={
                         () => {
-                            isCardOpen ? setIsCardOpen(false) : isCardOpen
+                            isCardOpen ? setIsCardOpen(false) : isCardOpen;
+                            document.body.style.overflow='auto'
                         }
                     } 
                     color={'var(--ButtonColor)'}

@@ -5,9 +5,15 @@
     border: 2px solid var(--ButtonColor)
     color: var(--ButtonColor)
     height: min-content
+    .GenreMobile
+        display: none
+        @media screen and (max-width: 468px)
+            display: block
     ul
         list-style: none
         text-decoration: none
+        @media screen and (max-width: 468px)
+            display: none
         li
             padding: 10px 0
             border-bottom: 2px solid var(--HeaderColorTest)

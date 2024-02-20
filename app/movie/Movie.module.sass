@@ -6,12 +6,16 @@
     grid-template-columns: 1fr 4fr
     grid-gap: 0 12px
     color: #fff
+    @media screen and (max-width: 468px)
+        margin-top: 240px
     .Title
         margin: 0 auto
         margin-bottom: 20px
         grid-column-start: 1
         grid-column-end: 4
         display: grid
+        @media screen and (max-width: 468px)
+            display: none
     .Nav
         grid-row: 2
         grid-column: 1
