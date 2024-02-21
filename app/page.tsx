@@ -73,6 +73,7 @@ export default function Home() {
                 return <MovieCard eventClick={() => {
                   setIsCardOpen(true);
                   setMovieFlag({flag: true, item: index});
+                  document.body.style.overflow='hidden';
                 }} key={index} movieApi={movie} />
               })
             }

@@ -1,9 +1,12 @@
 .Home
     color: #e2e2e2
     background-size: cover
+    background-position: inherit
     // background-color: #a75c5c
     @media screen and (max-width: 768px)
         // position: fixed
+    @media screen and (max-width: 468px)
+        background-position: center
     .opacity
         background-color: #fff
     .info
@@ -16,7 +19,10 @@
         flex-direction: column
         justify-content: center
         @media screen and (max-width: 468px)
-            height: 830px
+            justify-content: flex-start
+            padding-top: 240px
+            // box-sizing: content-box
+            height: 668px //830px
             h1
                 margin-top: 148px
 
