@@ -8,6 +8,9 @@
     display: grid
     grid-template-columns: 1fr 4fr
     color: #fff
+    @media screen and (max-width: 468px)
+        margin-top: 240px
+        grid-template-columns: 1fr
     .TvFrame   
         display: grid
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))

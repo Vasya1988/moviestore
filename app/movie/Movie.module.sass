@@ -28,8 +28,10 @@
         grid-column: 2
         @media screen and (max-width: 468px)
             grid-row: 3
-        grid-column: 1
+            grid-column: 1
         .Genre
             display: grid
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
             grid-gap: 0 36px
+            @media screen and (max-width: 1190px)
+                justify-items: center
