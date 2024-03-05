@@ -20,13 +20,13 @@ const MovieLayout = (
             <div
                 className={Styles.Movie}
             >
-                <div className={Styles.Title}>
+                <div className={'Title'}>
                     <Title movieName={resultName ||'Choose a genre'} />
                 </div>
                 <div className={Styles.Nav}>
                     <Filter test={()=>{}} active={resultName}/>
                 </div>
-                <div className={Styles.Children}>
+                <div className='Children'>
                     { children } 
                 </div>
             </div>

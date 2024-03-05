@@ -7,11 +7,13 @@
     height: min-content
     @media screen and (max-width: 468px)
         padding: 6px 30px
+        margin-bottom: 28px
     .GenreMobile
         display: none
         @media screen and (max-width: 468px)
             display: block
-    ul
+    ul, .GenreList
+        display: block
         list-style: none
         text-decoration: none
         @media screen and (max-width: 468px)
@@ -36,5 +38,7 @@
         li:last-child
             border-bottom: none
 
-.showGenre
-    display: block
+.showGenre 
+    display: block !important
+.showGenreNone
+    display: none

@@ -30,7 +30,7 @@ const Movie = () => {
     }, [genreName])
     console.log('Genre --> ', apiGenre)
     return (
-        <main className={Styles.Genre}>
+        <main className='Genre'>
             {
                 apiGenre && apiGenre.map((movie, index) => {
                     return <MovieCard eventClick={() => {

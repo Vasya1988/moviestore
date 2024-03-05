@@ -7,7 +7,7 @@ import { useGlobalContext } from '@/app/Context/Context';
 
 const Filter = (props: any) => {
     const {genreName, setGenreName} = useGlobalContext()
-    const [showGenre, setShowGenre] = useState('none')
+    const [showGenre, setShowGenre] = useState('block')
     
     return (
         <nav className={Styles.Filter}>
@@ -15,6 +15,7 @@ const Filter = (props: any) => {
                 className={Styles.GenreMobile}
                 onClick={
                     () => {
+                        document.querySelector(`.${Styles.GenreList}`)?.classList.toggle(Styles.showGenre)
                         showGenre === 'none' 
                             ? setShowGenre('block')
                             : setShowGenre('none')
@@ -23,15 +24,17 @@ const Filter = (props: any) => {
             >
                 Choose genre
             </h2>
-            <ul style={{display: showGenre}}>
+            <ul className={Styles.GenreList}>
                 { FilterList.map((name, index) => 
                     <li 
                         className={name.name === props.active ? 'active' : ''}
                         key={index} 
                         onClick={(event) => {
                             setGenreName(event.currentTarget.dataset.genre); 
-                            setShowGenre('none'); 
-                            window.scrollTo(0,0)}
+                            document.querySelector(`.${Styles.GenreList}`)?.classList.toggle(Styles.showGenre)
+                            setShowGenre('none');
+                            window.outerWidth <= 468 ? window.scrollTo(0,0) : false
+                            }
                         } 
                         data-genre={name.genre}>
                             <a>{name.name}</a>
