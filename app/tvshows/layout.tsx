@@ -14,7 +14,7 @@ const TvshowsLayout = ({ children }: { children: React.ReactNode}) => {
     return (
         <main className={Styles.Tvshows}>
             <div className={'Title'}>
-                <Title movieName={window.outerWidth <= 468 ?resultName || '' : resultName || 'Choose a genre'} />
+                <Title movieName={resultName || 'Choose a genre'} />
             </div>
             <Filter />
             { children }
