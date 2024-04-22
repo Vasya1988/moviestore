@@ -33,10 +33,17 @@ export default function Home() {
     await setYear(`${movieYear?.year}`)
 
   }
+
+  const handleScroll = () => {
+    // console.log(window.innerHeight)
+    console.log(document.documentElement.scrollTop + window.innerHeight)
+    console.log(document.documentElement.scrollHeight)
+  }
   
   useEffect(() => {
+    responseApi();
+    window.addEventListener('scroll', handleScroll)
     
-    responseApi()
   }, []);
 
   console.log('result ', movieApi)
