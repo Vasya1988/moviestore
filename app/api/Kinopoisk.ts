@@ -25,6 +25,7 @@ export const KinopoiskApiGenre = async (genre?: string, year?: string, tvshows?:
     const getGenre = genre && `genres.name=${genre}`;
     const getYears = year && `year=${year}`;
     const getTvshow = tvshows && `type=${tvshows}` // tv-series
+    // const pageNumber = 
 
     const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=12&${getTvshow}&${getGenre}&${getYears}`, headers);
 

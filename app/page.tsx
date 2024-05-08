@@ -24,31 +24,48 @@ export default function Home() {
   const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
 
   async function responseApi() {
+
     const result = await KinopoiskApiRandom()
     const movieYear: { year?: string } = result
     const genres = await KinopoiskApiGenre();
     const getGenres = genres.docs;
+    console.log(getGenres)
     setGenres(getGenres)
     await setmovieApi(result)
     await setYear(`${movieYear?.year}`)
 
   }
 
-  const handleScroll = () => {
-    // console.log(window.innerHeight)
-    console.log(document.documentElement.scrollTop + window.innerHeight)
-    console.log(document.documentElement.scrollHeight)
+  useEffect(() =>{console.log(genres)},[genres])
+
+  const handleScroll = async () => {
+    const windowHeight = window.innerHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const currentScrollHeight = scrollTop + windowHeight;
+    
+    if (currentScrollHeight === scrollHeight) {
+      const genres = await KinopoiskApiGenre(undefined, undefined, undefined, 8);
+      const getGenres = genres.docs;
+      
+      console.log('HANDLE --> ', getGenres)
+      // setGenres(prev => prev.concat(getGenres))
+      setGenres(prev => [...prev, getGenres])
+      console.log('GENRES --> ', genres)
+    }
   }
   
   useEffect(() => {
     responseApi();
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
     
   }, []);
 
-  console.log('result ', movieApi)
-  console.log('Genres -->  ', movieFlag.item && genres[movieFlag.item].name)
-  console.log('fff')
+  // console.log('result ', movieApi)
+  // console.log('Genres -->  ', movieFlag.item && genres[movieFlag.item].name)
+  // console.log('fff')
   return (
     <main className={'container-home'}>
       <div
@@ -88,7 +105,7 @@ export default function Home() {
       {
         movieFlag.flag ? <OpenCard 
         name={genres[movieFlag.item].name}
-        imageLInk={genres[movieFlag.item].poster.url} 
+        imageLInk={genres[movieFlag.item].poster?.url} 
         description={genres[movieFlag.item].description} 
         year={genres[movieFlag.item].year} 
         countries={genres[movieFlag.item].countries.map(item => item.name)}
