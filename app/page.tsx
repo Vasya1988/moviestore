@@ -22,6 +22,7 @@ export default function Home() {
   const [genres, setGenres] = useState<GenreProps[]>([])
   const {isCardOpen, setIsCardOpen} = useGlobalContext();
   const [movieFlag, setMovieFlag] = useState({flag: false, item: 0})
+  const [pageCounter, setPageCounter] = useState(2)
 
   async function responseApi() {
 
@@ -29,15 +30,14 @@ export default function Home() {
     const movieYear: { year?: string } = result
     const genres = await KinopoiskApiGenre();
     const getGenres = genres.docs;
-    console.log(getGenres)
+    // console.log(getGenres)
     setGenres(getGenres)
     await setmovieApi(result)
     await setYear(`${movieYear?.year}`)
 
   }
 
-  useEffect(() =>{console.log(genres)},[genres])
-
+  // Функция подгрузки фильмов по скроллу
   const handleScroll = async () => {
     const windowHeight = window.innerHeight;
     const scrollTop = document.documentElement.scrollTop;
@@ -45,23 +45,34 @@ export default function Home() {
     const currentScrollHeight = scrollTop + windowHeight;
     
     if (currentScrollHeight === scrollHeight) {
-      const genres = await KinopoiskApiGenre(undefined, undefined, undefined, 8);
-      const getGenres = genres.docs;
-      
-      console.log('HANDLE --> ', getGenres)
-      // setGenres(prev => prev.concat(getGenres))
-      setGenres(prev => [...prev, getGenres])
-      console.log('GENRES --> ', genres)
+
+      if (pageCounter < 5) {
+        const genresHandle = await KinopoiskApiGenre(undefined, undefined, undefined, pageCounter);
+        const getGenres = genresHandle.docs;
+
+        console.log('HANDLE --> ', getGenres)
+        // setGenres(prev => prev.concat(getGenres))
+        setGenres(prev => [...prev, ...getGenres])
+        // console.log('GENRES --> ', genres)
+        setPageCounter(pageCounter + 1)
+      } else {
+        console.log('Page counter more then 5', pageCounter)
+      }
     }
   }
+
+  useEffect(() => {console.log(genres, pageCounter)}, [genres, pageCounter])
   
   useEffect(() => {
     responseApi();
+    
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-    
-  }, []);
+  }, [genres, pageCounter])
 
   // console.log('result ', movieApi)
   // console.log('Genres -->  ', movieFlag.item && genres[movieFlag.item].name)
