@@ -10,7 +10,7 @@ export const KinopoiskApiRandom = async () => {
     // Important. The API key must be in the headers
     // Обязательно должен быть ключ в headers
 
-    const getFetch = await fetch('https://api.kinopoisk.dev/v1.3/movie/random', headers)
+    const getFetch = await fetch('https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=backdrop.url', headers)
 
     let response = await getFetch.json()
 
@@ -27,8 +27,9 @@ export const KinopoiskApiGenre = async (genre?: string, year?: string, tvshows?:
     const getTvshow = tvshows && `type=${tvshows}` // tv-series
     // const pageNumber = 
 
-    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=12&${getTvshow}&${getGenre}&${getYears}`, headers);
+    const getFetch = await fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=12&${getTvshow}&${getGenre}&${getYears}&notNullFields=poster.url`, headers);
 
+    
     let response = await getFetch.json();
     
     // await console.log('resp --> ', response)
